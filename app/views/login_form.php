@@ -1,25 +1,27 @@
-<div class="container main">
+<div class="container">
 
-	<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4']) ?>
-
-	<h2>Login</h2>
-
-	<hr>
-
-	<div class="form-group">
-		<?=Form::label('username', 'Username')?>
-		<?=Form::text('username', Sticky::get('username'), ['class' => 'form-control'])?>
+	<div class="login">
+		<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4']) ?>
+		
+		<h3>Login <span class="grey">or</span> <a href="/register">Create an Account</a></h3>
+		
+		<hr>
+		
+		<div class="form-group">
+			<?=Form::label('email', 'Email')?>
+			<?=Form::text('email', Sticky::get('email'), ['class' => 'form-control'])?>
+		</div>
+		
+		<div class="form-group">
+			<?=Form::label('password', 'Password')?>
+			<?=Form::password('password', '', ['class' => 'form-control'])?>
+		</div>
+		
+		<div class="form-group">
+			<?=Form::submit('Login', ['class' => 'btn btn-primary'])?>
+		</div>
+		
+		<?= Form::close() ?>
 	</div>
-	
-	<div class="form-group">
-		<?=Form::label('password', 'Password')?>
-		<?=Form::password('password', '', ['class' => 'form-control'])?>
-	</div>
-
-	<div class="form-group">
-		<?=Form::submit('Login', ['class' => 'btn btn-primary'])?>
-	</div>
-
-	<?= Form::close() ?>
 
 </div>

@@ -2,4 +2,4 @@
 
 Auth::log_out();
 
-URL::redirect(url(''));
+URL::redirect('/login');

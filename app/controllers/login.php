@@ -12,7 +12,7 @@ if (Input::posted()) {
 
 	if ($success) {
 		Auth::log_in($user->id);
-		URL::redirect(url('admin'));
+		URL::redirect('/');
 	}
 }
 

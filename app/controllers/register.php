@@ -14,6 +14,7 @@ if (Input::posted()) {
 
 	Auth::log_in($user->id);
 
+	URL::redirect('/user');
 }
 
 # Views

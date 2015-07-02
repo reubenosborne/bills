@@ -10,7 +10,7 @@ Route::get('/logout', CONTROLLERS.'logout.php');
 Route::get('/login', CONTROLLERS.'login.php');
 Route::post('/login', CONTROLLERS.'login.php');
 
-Route::get('/admin', CONTROLLERS.'admin.php');
+Route::get('/user', CONTROLLERS.'user.php');
 
 // Route::get('/product/new', CONTROLLERS.'create_product.php');
 // Route::post('/product/new', CONTROLLERS.'create_product.php');
