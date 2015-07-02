@@ -3,8 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Shopping Cart</title>
-	<link rel="stylesheet" href="<?=url('assets/css/bootstrap.min.css')?>">
-	<link rel="stylesheet" href="<?=url('assets/css/style.css')?>">
+	<link rel="stylesheet" href="assets/components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 		<div class="container">
 
 			<div class="navbar-header">
-				<a href="<?=url('')?>"><img src="<?=url('assets/img/Pokeball.PNG')?>" alt="" class="navbar-brand"></a>
+				<a href="<?=url('')?>"><h1 class="navbar-brand">Bills</h1></a>
 
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#links-collapse">
 				                <span class="sr-only">Toggle navigation</span>
@@ -24,7 +24,6 @@
 				</button>
 			</div>
 
-			<!-- <a href="/" class="navbar-brand">Logo</a> -->
 			<div class="collapse navbar-collapse" id="links-collapse">
 				<ul class="nav navbar-nav navbar-right">
 				

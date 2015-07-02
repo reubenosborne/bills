@@ -1,7 +1,0 @@
-[22-Jun-2015 16:18:22 Pacific/Auckland] PHP Warning:  require_once(../applibrariesauth.lib.php): failed to open stream: No such file or directory in /home/reubenosborne/public_html/test/cart/public/index.php on line 13
-[22-Jun-2015 16:18:22 Pacific/Auckland] PHP Fatal error:  require_once(): Failed opening required '../applibrariesauth.lib.php' (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/reubenosborne/public_html/test/cart/public/index.php on line 13
-[23-Jun-2015 16:19:33 Pacific/Auckland] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/reubenosborne/public_html/test/cart/app/controllers/login.php on line 5
-[23-Jun-2015 17:35:49 Pacific/Auckland] PHP Parse error:  syntax error, unexpected ':' in /home/reubenosborne/public_html/test/cart/app/views/header.php on line 23
-[23-Jun-2015 18:00:49 Pacific/Auckland] PHP Warning:  array_merge(): Argument #2 is not an array in /home/reubenosborne/public_html/test/cart/app/libraries/form.lib.php on line 43
-[23-Jun-2015 18:00:49 Pacific/Auckland] PHP Warning:  array_merge(): Argument #2 is not an array in /home/reubenosborne/public_html/test/cart/app/libraries/form.lib.php on line 27
-[23-Jun-2015 18:00:49 Pacific/Auckland] PHP Warning:  Invalid argument supplied for foreach() in /home/reubenosborne/public_html/test/cart/app/libraries/form.lib.php on line 90
