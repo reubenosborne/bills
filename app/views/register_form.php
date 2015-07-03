@@ -3,7 +3,7 @@
 	<div class="login">
 		<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4']) ?>
 	
-		<h3>Register</h3>
+		<h3>Register an Account</h3>
 		<a href="/login">Back to Login</a>
 	
 		<hr>
