@@ -11,8 +11,15 @@ if (Input::posted()) {
 	$success = $user->authenticate();
 
 	if ($success) {
+
 		Auth::log_in($user->id);
-		URL::redirect('/');
+
+		if (Auth::is_admin()) {
+			URL::redirect('/admin');
+		}else{
+			URL::redirect('/');
+		}
+
 	}
 }
 

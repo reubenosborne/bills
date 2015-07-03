@@ -2,12 +2,9 @@
 
 # Logic
 
-if (Auth::is_logged_in()) {
-	URL::redirect('/user');
-}else{
+if (!Auth::is_logged_in()) {
 	URL::redirect('/login');
 }
-
 
 # Views
 
