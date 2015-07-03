@@ -1,3 +1,13 @@
-<h1>Hello</h1>
+<?php # controllers/user.php
 
-<a href="/logout">Logout</a>
+# Logic
+
+if (Auth::is_admin()) {
+	URL::redirect('/admin');
+}
+
+# Views
+
+include VIEWS.'header.php';
+include VIEWS.'user_panel.php';
+include VIEWS.'footer.php';
