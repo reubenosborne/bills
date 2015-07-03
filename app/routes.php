@@ -10,9 +10,16 @@ Route::post('/login', CONTROLLERS.'login.php');
 
 Route::get('/logout', CONTROLLERS.'logout.php');
 
+Route::get('/forgotpw', CONTROLLERS.'forgotpw.php');
+Route::post('/forgotpw', CONTROLLERS.'forgotpw.php');
+
+Route::get('/resetpw/:value', CONTROLLERS.'resetpw.php');
+Route::post('/resetpw/:value', CONTROLLERS.'resetpw.php');
+
 Route::get('/user', CONTROLLERS.'user.php');
 
 Route::get('/admin', CONTROLLERS.'admin.php');
+Route::post('/admin', CONTROLLERS.'admin.php');
 
 // Route::get('/product/new', CONTROLLERS.'create_product.php');
 // Route::post('/product/new', CONTROLLERS.'create_product.php');

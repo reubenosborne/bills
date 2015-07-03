@@ -1,4 +1,4 @@
-<?php # products.collection.php
+<?php # bills.collection.php
 
 class Bills_collection extends Collection{
 

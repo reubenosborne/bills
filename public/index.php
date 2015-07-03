@@ -31,6 +31,7 @@ require_once LIBRARIES.'xss.lib.php';
 require_once MODELS.'user.model.php';
 require_once MODELS.'bill.model.php';
 require_once MODELS.'bills.collection.php';
+require_once MODELS.'token.model.php';
 
 # Load the healpers and the routes
 

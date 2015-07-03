@@ -1,4 +1,4 @@
-<?php # product.model.php
+<?php # bill.model.php
 
 class Bill extends Model{
 
