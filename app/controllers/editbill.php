@@ -1,10 +1,13 @@
-<?php # controllers/newbill.php
+<?php # controllers/deletebill.php
 
 # Logic
 
-if(Input::posted()){
+$bill = new Bill();
 
-	$bill = new Bill();
+$bill->load(Route::param('id'));
+
+
+if(Input::posted()){
 
 	$bill->fill(Input::all());
 	$bill->splitcost = $bill->cost / 5;
@@ -34,7 +37,13 @@ if(Input::posted()){
 	URL::redirect('/admin');
 }
 
-$title = 'New Bill';
+Sticky::set('date', 	$bill->date);
+Sticky::set('category', $bill->category);
+Sticky::set('cost', 	$bill->cost);
+Sticky::set('notes', 	$bill->notes);
+Sticky::set('image', 	$bill->image);
+
+$title = 'Edit Bill';
 
 # Views
 

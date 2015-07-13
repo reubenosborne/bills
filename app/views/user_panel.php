@@ -27,8 +27,10 @@
 			<td>
 			<?= Form::open() ?>
 				
-					<?= Form::label('paid', 'Paid') ?>
-					<?= Form::checkbox('paid', Sticky::get('paid'), false, ['class' => 'form-input']) ?>
+					<div class="form-group">
+						<?= Form::label('paid', 'Paid') ?>
+						<?= Form::checkbox('paid', Sticky::get('paid'), false, ['class' => 'form-control']) ?>
+					</div>
 
 			<?= Form::close() ?>
 			</td>

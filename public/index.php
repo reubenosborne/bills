@@ -29,11 +29,15 @@ require_once LIBRARIES.'xss.lib.php';
 # Load all models
 
 require_once MODELS.'user.model.php';
+require_once MODELS.'users.collection.php';
+
 require_once MODELS.'bill.model.php';
 require_once MODELS.'bills.collection.php';
+
 require_once MODELS.'token.model.php';
-require_once MODELS.'users.collection.php';
-require_once MODELS.'paid.model.php';
+
+require_once MODELS.'account.model.php';
+require_once MODELS.'accounts.collection.php';
 
 # Load the healpers and the routes
 

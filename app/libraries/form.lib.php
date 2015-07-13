@@ -364,7 +364,10 @@ class Form {
 	*/
 	public static function checkbox($name, $value = '', $checked = false, $extras = []){
 			
-		$extras .= $checked ? ' checked' : '';
+		//$extras .= $checked ? ' checked' : '';
+		if($checked){
+			$extras['checked'] = 'checked';
+		}
 
 		$html = self::input('checkbox', $name, $value, $extras);
 		return $html;
