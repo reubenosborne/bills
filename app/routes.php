@@ -21,6 +21,15 @@ Route::get('/user', CONTROLLERS.'user.php');
 Route::get('/admin', CONTROLLERS.'admin.php');
 Route::post('/admin', CONTROLLERS.'admin.php');
 
+Route::get('/new/bill', CONTROLLERS.'newbill.php');
+Route::post('/new/bill', CONTROLLERS.'newbill.php');
+
+Route::get('/edit/bill/:id', CONTROLLERS.'editbill.php');
+Route::post('/edit/bill/:id', CONTROLLERS.'editbill.php');
+
+Route::get('/delete/bill/:id', CONTROLLERS.'deletebill.php');
+Route::post('/delete/bill/:id', CONTROLLERS.'deletebill.php');
+
 // Route::get('/product/new', CONTROLLERS.'create_product.php');
 // Route::post('/product/new', CONTROLLERS.'create_product.php');
 // 

@@ -1,11 +1,4 @@
 <h1>Admin</h1>
-<a href="logout">Logout</a>
+<a href="logout" class="btn btn-warning">Logout</a>
 
-<?= Form::open() ?>
-	
-	<div class="form-group">
-		<?= Form::label('bill', 'Bill') ?>
-		<?= Form::text('bill', Sticky::get('bill')) ?>
-	</div>
-	
-<?= Form::close() ?>	
+<a href="/new/bill" class="btn btn-primary">Add Bill</a>

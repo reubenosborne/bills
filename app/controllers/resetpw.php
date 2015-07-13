@@ -7,10 +7,10 @@ $token = new Token();
 # load the token by the value in the url
 $token->load(['value' => Route::param('value')]);
 
-$today_dt = new DateTime($today);
-$token_dt = new DateTime($token->expiration);
+$today_dt = strtotime(date('Y-m-d H:i:s'));
+$token_dt = strtotime($token->expiration);
 
-if ($today_dt > $token->expiration) {
+if ($today_dt < $token->expiration) {
 	
 	# create a new user
 	$user = new User();
@@ -29,10 +29,15 @@ if ($today_dt > $token->expiration) {
 	
 		# log that user in
 		Auth::log_in($user->id, $user->is_admin);
+
+		# hard delete the token
+		$token->hard_delete();
 	
 		# Redirect wherever you want to go after that.
 		URL::redirect('/');
 	}
+} else {
+
 }
 
 # Views

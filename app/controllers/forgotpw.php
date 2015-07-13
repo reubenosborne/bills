@@ -14,9 +14,9 @@ if (Input::posted()) {
 
 	$token              = new Token();
 
-	$token->value       = md5(date('u'));
+	$token->value       = md5(uniqid(mt_rand(), true));
 
-	$token->expiration  = date('Y-m-d H:i:s', strtotime('+1 second'));
+	$token->expiration  = date('Y-m-d H:i:s', strtotime('+30 minutes'));
 
 	$token->user_id     = $user_id;
 
