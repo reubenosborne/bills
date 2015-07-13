@@ -19,6 +19,20 @@ if(Input::posted()){
 
 	$bill->save();
 
+	$users = new Users_Collection();
+	$users->get();
+
+	foreach ($users->items as $user) {
+
+		$paid = new Paid();
+		$paid->user_id = $user->id;
+		$paid->bill_id = $bill->id;
+		$paid->save();
+
+	}
+
+	
+
 	URL::redirect('/admin');
 }
 

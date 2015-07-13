@@ -3,7 +3,5 @@
 class Token extends Model{
 
 	protected $table = 'tokens';
-
 	
-
 }

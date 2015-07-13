@@ -1,6 +1,6 @@
 <?php 
 
-Route::get('/', CONTROLLERS.'home.php');
+Route::get('/', CONTROLLERS.'user.php');
 
 Route::get('/register', CONTROLLERS.'register.php');
 Route::post('/register', CONTROLLERS.'register.php');

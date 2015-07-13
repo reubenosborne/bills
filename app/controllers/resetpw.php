@@ -10,7 +10,7 @@ $token->load(['value' => Route::param('value')]);
 $today_dt = strtotime(date('Y-m-d H:i:s'));
 $token_dt = strtotime($token->expiration);
 
-if ($today_dt < $token->expiration) {
+if ($today_dt < $token_dt) {
 	
 	# create a new user
 	$user = new User();
@@ -34,10 +34,12 @@ if ($today_dt < $token->expiration) {
 		$token->hard_delete();
 	
 		# Redirect wherever you want to go after that.
-		URL::redirect('/');
+		if (Auth::is_admin()) {
+			URL::redirect('/admin');
+		}else{
+			URL::redirect('/');
+		}
 	}
-} else {
-
 }
 
 # Views

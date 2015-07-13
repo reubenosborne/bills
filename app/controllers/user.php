@@ -2,15 +2,17 @@
 
 # Logic
 
-// if (Auth::is_admin()) {
-// 	URL::redirect('/admin');
-// }
+if (Auth::is_admin()) {
+	URL::redirect('/admin');
+}
 
-$bills = new Bills_collection();
+$user = new User();
+$user->load(Auth::user_id());
+
+$bills = new Bills_Collection();
 $bills->where('deleted' , '0');
 $bills->order_by('date' , 'asc');
 $bills->get();
-
 
 
 # Views

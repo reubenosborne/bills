@@ -1,6 +1,6 @@
-<h1>Hello</h1>
+<h1>Hello <?= $user->name ?></h1>
 
-<a href="/logout">Logout</a>
+<a href="/logout" class="btn btn-danger">Logout</a>
 
 <hr>
 
@@ -25,6 +25,12 @@
 			<td>$<?= $bill->splitcost ?></td>
 			<td><?= $bill->notes ?></td>
 			<td>
+			<?= Form::open() ?>
+				
+					<?= Form::label('paid', 'Paid') ?>
+					<?= Form::checkbox('paid', Sticky::get('paid'), false, ['class' => 'form-input']) ?>
+
+			<?= Form::close() ?>
 			</td>
 		</tr>
 <?php endforeach ?>

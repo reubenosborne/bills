@@ -17,3 +17,7 @@
 
 	<?= Form::close() ?>
 </div>
+
+<?= $today_dt ?>
+<br>
+<?= $token_dt ?>
