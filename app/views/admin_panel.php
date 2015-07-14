@@ -36,8 +36,12 @@
 					</div>
 
 			<?= Form::close() ?> -->
-			<a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info">Edit</a>
-			<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger">Delete</a>
+			<div class="btn-group">
+				<a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info">Edit</a>
+				<a href="<?= 'pay/bill/'.$bill->id ?>" class="btn btn-success">Pay</a>
+				<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-warning">Remove</a>
+
+			</div>
 			</td>
 		</tr>
 <?php endforeach ?>

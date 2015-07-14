@@ -38,6 +38,5 @@
 	
 	<?= Form::submit('Save', ['class' => 'btn btn-primary']) ?>
 
-<?= Form::close() ?>
 
-<?= Sticky::get('image') ?>
+<?= Form::close() ?>
