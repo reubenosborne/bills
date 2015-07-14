@@ -25,15 +25,6 @@ if(Input::posted()){
 	$users = new Users_Collection();
 	$users->get();
 
-	foreach ($users->items as $user) {
-
-		$account = new Account();
-		$account->user_id = $user->id;
-		$account->bill_id = $bill->id;
-		$account->save();
-
-	}
-
 	URL::redirect('/admin');
 }
 

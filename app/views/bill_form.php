@@ -22,12 +22,12 @@
 	<div class="form-group">
 		<div>
 			<? if (Sticky::get('image')): ?>
-				<img src="assets/uploads/baby-duck.jpg" alt="" width="100" margin="10">
+				<img src="<?= Sticky::get('image') ?>" alt="Uploaded Image" width="100" margin="10">
 			<? endif ?>
 		</div>
 		<div>
 			<?= Form::label('file', 'Image') ?>
-			<?= Form::file() ?>
+			<?= Form::file('file', ['class' => 'form-control']) ?>
 		</div>
 	</div>
 	
@@ -39,5 +39,3 @@
 	<?= Form::submit('Save', ['class' => 'btn btn-primary']) ?>
 
 <?= Form::close() ?>
-
-<?= Sticky::get('image') ?>
