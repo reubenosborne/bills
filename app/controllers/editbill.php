@@ -6,7 +6,6 @@ $bill = new Bill();
 
 $bill->load(Route::param('id'));
 
-
 if(Input::posted()){
 
 	$bill->fill(Input::all());
@@ -15,7 +14,7 @@ if(Input::posted()){
 	if ($_FILES) {
 		$files = Upload::to_folder('assets/uploads/');
 
-		if ($_FILES[0]['error_message'] == false) {
+		if ($files[0]['error_message'] == false) {
 			$bill->image = $files[0]['filepath'];
 		}
 	}
@@ -24,15 +23,6 @@ if(Input::posted()){
 
 	$users = new Users_Collection();
 	$users->get();
-
-	foreach ($users->items as $user) {
-
-		$account = new Account();
-		$account->user_id = $user->id;
-		$account->bill_id = $bill->id;
-		$account->save();
-
-	}
 
 	URL::redirect('/admin');
 }

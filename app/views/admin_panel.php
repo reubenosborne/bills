@@ -1,6 +1,6 @@
 <h1>Hello <?= $user->name ?></h1>
 
-<a href="/new/bill" class="btn btn-primary">Add Bill</a>
+<a href="/new/bill" class="btn btn-primary">New Bill</a>
 
 <a href="/logout" class="btn btn-danger">Logout</a>
 
@@ -42,6 +42,8 @@
 				<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-warning">Remove</a>
 
 			</div>
+
+
 			</td>
 		</tr>
 <?php endforeach ?>
