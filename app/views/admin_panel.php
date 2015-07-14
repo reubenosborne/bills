@@ -1,6 +1,6 @@
 <h1>Hello <?= $user->name ?></h1>
 
-<a href="/new/bill" class="btn btn-primary">Add Bill</a>
+<a href="/new/bill" class="btn btn-primary">New Bill</a>
 
 <a href="/logout" class="btn btn-danger">Logout</a>
 
@@ -36,8 +36,13 @@
 					</div>
 
 			<?= Form::close() ?> -->
-			<a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info">Edit</a>
-			<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger">Delete</a>
+
+			<div class="btn-group">
+				<a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info">Edit</a>
+				<a href="<?= 'pay/bill/'.$bill->id ?>"  class="btn btn-success">Pay</a>
+			</div>
+
+
 			</td>
 		</tr>
 <?php endforeach ?>

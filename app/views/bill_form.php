@@ -1,6 +1,9 @@
-<?= Form::open_upload('', ['class' => 'col-md-6 col-md-offset-3']) ?>
+<?= Form::open_upload('', ['class' => 'col-md-6 col-md-offset-3 login']) ?>
 
 	<h2><?= $title ?></h2>
+	<?php if (Route::param('id')): ?>
+		<a href="<?= '/delete/bill/'.$bill->id ?>" class="btn btn-danger">Delete</a>
+	<?php endif ?>
 	
 	<hr>
 	
@@ -22,7 +25,7 @@
 	<div class="form-group">
 		<div>
 			<? if (Sticky::get('image')): ?>
-				<img src="<?= Sticky::get('image') ?>" alt="Uploaded Image" width="100" margin="10">
+				<img src="/<?= Sticky::get('image') ?>" alt="Uploaded Image" width="100" margin="10">
 			<? endif ?>
 		</div>
 		<div>
@@ -36,6 +39,11 @@
 		<?= Form::text('notes', Sticky::get('notes'), ['class' => 'form-control'])?>
 	</div>
 	
-	<?= Form::submit('Save', ['class' => 'btn btn-primary']) ?>
+	<div class="btn-group">
+		<a href="/admin" class="btn btn-warning">Cancel</a>
+		<?= Form::submit('Save', ['class' => 'btn btn-primary']) ?>
+	</div>
+
 
 <?= Form::close() ?>
+

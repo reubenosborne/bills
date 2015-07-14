@@ -1,3 +1,0 @@
-- Headers already sent error?
-- Image not displaying in edit bill form
-- Update bill loses image fils
