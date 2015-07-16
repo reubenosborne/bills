@@ -170,6 +170,9 @@ class Database{
 
 		$this->reset();
 
+		// bookmark
+		//echo $q.'<br>';
+
 		return $this->assoc($this->run($q));
 	}
 	

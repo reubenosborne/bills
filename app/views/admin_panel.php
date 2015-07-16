@@ -6,6 +6,9 @@
 
 <hr>
 
+<h3>Unpaid Bills</h3>
+
+
 <table class="table table-striped">
 <tr>
 	<th>File</th>
@@ -20,7 +23,7 @@
 		<tr>
 			<td width="100">
 				<?php if ($bill->image): ?>
-				<a href="<?= $bill->image ?>" alt="" width="100">File</a>
+				<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
 			</td>
 			<td><?= $bill->date ?></td>
@@ -36,15 +39,52 @@
 					</div>
 
 			<?= Form::close() ?> -->
-			<div class="btn-group">
-				<a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info">Edit</a>
-				<a href="<?= 'pay/bill/'.$bill->id ?>" class="btn btn-success">Pay</a>
-				<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-warning">Remove</a>
 
-			</div>
+			<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+			<a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info">Edit</a>
+			<a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success">Pay</a>
+
 
 
 			</td>
 		</tr>
 <?php endforeach ?>
+
+</table>
+
+<h3>Paid Bills</h3>
+
+<table class="table table-striped">
+<tr>
+	<th>File</th>
+	<th>Date</th>
+	<th>Category</th>
+	<th>Cost</th>
+	<th>Notes</th>
+</tr>
+
+<?php foreach ($paidbills->items as $paidbill): ?>
+		<tr>
+			<td width="100">
+				<?php if ($paidbill->image): ?>
+				<a href="<?= $paidbill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
+				<?php endif ?>
+			</td>
+			<td><?= $paidbill->date ?></td>
+			<td><?= $paidbill->category ?></td>
+			<td>$<?= $paidbill->splitcost ?></td>
+			<td><?= $paidbill->notes ?></td>
+			<td>
+<!--  			<?= Form::open() ?>
+				
+					<div class="form-group">
+						<?= Form::label('paid', 'Paid') ?>
+						<?= Form::checkbox('paid', Sticky::get('paid'), false, ['class' => 'form-control']) ?>
+					</div>
+
+			<?= Form::close() ?> -->
+			</td>
+		</tr>
+<?php endforeach ?>
+
 </table>

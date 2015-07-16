@@ -29,6 +29,8 @@ Route::post('/edit/bill/:id', CONTROLLERS.'editbill.php');
 
 Route::get('/delete/bill/:id', CONTROLLERS.'deletebill.php');
 
+Route::get('/confirm/bill/:id', CONTROLLERS.'confirmbill.php');
+
 Route::get('/pay/bill/:id', CONTROLLERS.'paybill.php');
 
 

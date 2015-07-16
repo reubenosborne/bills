@@ -2,17 +2,17 @@
 
 # Logic
 
-$bill = new Bill();
+$account = new Account();
+$account->load([
+		'bill_id' => Route::param('id'),
+		'user_id' => Auth::user()->id
+	]);
 
-$bill->load(Route::param('id'));
-
-$bill->paid = '1';
-
-// $accounts = new Accounts_Collection();
-// $accounts->load(['bill_id' => '']);
-
-// $accounts->delete();
+if ($account->id) {
+	$account->paid = 1;
+	$account->save();
+}
 
 # Redirect
 
-URL::redirect('/admin');
+URL::redirect('/');

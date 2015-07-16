@@ -1,9 +1,8 @@
-<?= Form::open_upload('', ['class' => 'col-md-6 col-md-offset-3 login']) ?>
+<div class="row">
+	<?= Form::open_upload('', ['class' => 'col-md-6 col-md-offset-3']) ?>
 
 	<h2><?= $title ?></h2>
-	<?php if (Route::param('id')): ?>
-		<a href="<?= '/delete/bill/'.$bill->id ?>" class="btn btn-danger">Delete</a>
-	<?php endif ?>
+
 	
 	<hr>
 	
@@ -39,9 +38,12 @@
 		<?= Form::text('notes', Sticky::get('notes'), ['class' => 'form-control'])?>
 	</div>
 	
+	<?php if (Route::param('id')): ?>
+		<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+	<?php endif ?>
 	<div class="btn-group">
 		<a href="/admin" class="btn btn-warning">Cancel</a>
 		<?= Form::submit('Save', ['class' => 'btn btn-primary']) ?>
 	</div>
-
 <?= Form::close() ?>
+</div>
