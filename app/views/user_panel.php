@@ -1,8 +1,6 @@
 <h1>Hello <?= $user->name ?></h1>
 
-
 <a href="/logout" class="btn btn-danger">Logout</a>
-
 
 <hr>
 
@@ -54,7 +52,7 @@
 </table>
 
 
-<? else: ?>
+<?php else: ?>
 
 
 <p class="alert alert-success">No bills to pay, lucky you!</p>

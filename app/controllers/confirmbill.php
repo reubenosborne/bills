@@ -17,6 +17,7 @@ $accounts->where('bill_id' , $bill->id);
 $accounts->get();
 
 foreach ($accounts->items as $account) {
+	$account->paid = 1;
 	$account->confirmed = 1;
 	$account->save();
 }

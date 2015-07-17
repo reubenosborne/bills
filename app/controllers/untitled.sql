@@ -1,6 +1,6 @@
 SELECT name 
 FROM bills, accounts, users 
-WHERE bills.id = '23' 
+WHERE bills.id = '25' 
 AND bills.id = accounts.bill_id 
 AND accounts.user_id = users.id 
 AND accounts.paid = '1' 

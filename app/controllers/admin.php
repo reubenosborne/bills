@@ -19,6 +19,25 @@ $paidbills->where('paid' , '1');
 $paidbills->order_by('date' , 'asc');
 $paidbills->get();
 
+
+
+function getPaidUsers($id){
+	$db = new Database(Config::$database);
+
+	return $db
+		->select('name')
+		->from('bills, accounts, users')
+		->where('bills.id', $id)
+		->where('bills.id', 'accounts.bill_id', false)
+		->where('accounts.user_id', 'users.id', false)
+		->where('accounts.paid', '1')
+		->where('accounts.confirmed', '0')
+		->get();
+}
+
+// print_r($userspaid);
+
+
 # Views
 
 include VIEWS.'header.php';

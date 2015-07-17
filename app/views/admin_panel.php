@@ -8,7 +8,8 @@
 
 <h3>Unpaid Bills</h3>
 
-
+<?php if ($bills->items): ?>
+	
 <table class="table table-striped">
 <tr>
 	<th>File</th>
@@ -16,8 +17,9 @@
 	<th>Category</th>
 	<th>Cost</th>
 	<th>Notes</th>
-	<th width="50px">Delete</th>
+	<th>User</th>
 	<th width="50px">Edit</th>
+	<th width="50px">Delete</th>
 	<th width="50px">Pay</th>
 </tr>
 
@@ -32,13 +34,35 @@
 			<td><?= $bill->category ?></td>
 			<td>$<?= $bill->splitcost ?></td>
 			<td><?= $bill->notes ?></td>
-			<td><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
+
+			<td>
+				<?php $userspaid = getPaidUsers($bill->id) ?>
+				<?php foreach ($userspaid as $up): ?>
+					<i class="tooltip glyphicon glyphicon-user " title="<?= $up['name'] ?>"></i> 
+				<?php endforeach ?>
+			</td>
+
+
 			<td><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 			<td><a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
 		</tr>
 <?php endforeach ?>
 
 </table>
+
+
+<?php elseif (!$bills->items && $paidbills->items): ?>
+
+	<p class="alert alert-info">There are no bills to pay.</p>
+
+<?php endif ?>
+
+
+<!--      Paid Bills      -->
+
+
+<?php if ($paidbills->items): ?>
 
 <h3>Paid Bills</h3>
 
@@ -49,6 +73,8 @@
 	<th>Category</th>
 	<th>Cost</th>
 	<th>Notes</th>
+	<th width="50px">Edit</th>
+	<th width="50px">Delete</th>
 </tr>
 
 <?php foreach ($paidbills->items as $paidbill): ?>
@@ -62,17 +88,19 @@
 			<td><?= $paidbill->category ?></td>
 			<td>$<?= $paidbill->splitcost ?></td>
 			<td><?= $paidbill->notes ?></td>
-			<td>
-<!--  			<?= Form::open() ?>
-				
-					<div class="form-group">
-						<?= Form::label('paid', 'Paid') ?>
-						<?= Form::checkbox('paid', Sticky::get('paid'), false, ['class' => 'form-control']) ?>
-					</div>
-
-			<?= Form::close() ?> -->
-			</td>
+			<td><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 		</tr>
 <?php endforeach ?>
 
 </table>
+
+<?php elseif ($bills->items && !$paidbills->items): ?>
+
+	<p class="alert alert-danger">No bills have been paid yet.</p>
+
+<?php else: ?>
+
+	<p class="alert alert-info">There are no bills to pay.</p>
+
+<?php endif ?>
