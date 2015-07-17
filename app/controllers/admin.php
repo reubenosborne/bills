@@ -20,6 +20,7 @@ $paidbills->order_by('date' , 'asc');
 $paidbills->get();
 
 function getPaidUsers($id){
+
 	$db = new Database(Config::$database);
 
 	return $db
@@ -32,8 +33,6 @@ function getPaidUsers($id){
 		->where('accounts.confirmed', '0')
 		->get();
 }
-
-// print_r($userspaid);
 
 
 # Views

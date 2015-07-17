@@ -11,12 +11,6 @@ if (!Auth::is_logged_in()) {
 $user = new User();
 $user->load(Auth::user_id());
 
-// $bills = new Bills_Collection();
-// $bills->where('deleted' , '0');
-// $bills->where('paid', '0');
-// $bills->order_by('date' , 'asc');
-// $bills->get();
-
 ## ------------------------------------------------------------------------
 
 $unpaidaccounts = new Accounts_Collection();
@@ -52,7 +46,6 @@ $pendaccounts->get();
 
 $pendbills = new Bills_Collection();
 $pendbills->where('deleted' , '0');
-// $pendbills->where('paid' , '0');
 
 foreach($pendaccounts->items as $key => $pa){
 	$pendbills->where('id', $pa->bill_id, true, $key != 0);
@@ -65,7 +58,6 @@ if(count($pendaccounts->items)){
 }
 
 ## ------------------------------------------------------------------------
-
 
 $paidbills = new Bills_Collection();
 $paidbills->where('deleted' , '0');
