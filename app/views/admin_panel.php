@@ -16,7 +16,9 @@
 	<th>Category</th>
 	<th>Cost</th>
 	<th>Notes</th>
-	<th>Controls</th>
+	<th width="50px">Delete</th>
+	<th width="50px">Edit</th>
+	<th width="50px">Pay</th>
 </tr>
 
 <?php foreach ($bills->items as $bill): ?>
@@ -30,23 +32,9 @@
 			<td><?= $bill->category ?></td>
 			<td>$<?= $bill->splitcost ?></td>
 			<td><?= $bill->notes ?></td>
-			<td>
-<!--  			<?= Form::open() ?>
-				
-					<div class="form-group">
-						<?= Form::label('paid', 'Paid') ?>
-						<?= Form::checkbox('paid', Sticky::get('paid'), false, ['class' => 'form-control']) ?>
-					</div>
-
-			<?= Form::close() ?> -->
-
-			<a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-			<a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info">Edit</a>
-			<a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success">Pay</a>
-
-
-
-			</td>
+			<td><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
+			<td><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td><a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
 		</tr>
 <?php endforeach ?>
 

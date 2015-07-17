@@ -2,9 +2,11 @@
 
 # Logic
 
-if (Auth::is_admin()) {
+if (!Auth::is_logged_in()) {
+	Auth::kickout('/login');
+} elseif (Auth::is_admin()) {
 	URL::redirect('/admin');
-}
+} 
 
 $user = new User();
 $user->load(Auth::user_id());
