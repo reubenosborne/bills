@@ -19,8 +19,6 @@ $paidbills->where('paid' , '1');
 $paidbills->order_by('date' , 'asc');
 $paidbills->get();
 
-
-
 function getPaidUsers($id){
 	$db = new Database(Config::$database);
 

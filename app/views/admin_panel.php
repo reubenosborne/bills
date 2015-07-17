@@ -34,15 +34,13 @@
 			<td><?= $bill->category ?></td>
 			<td>$<?= $bill->splitcost ?></td>
 			<td><?= $bill->notes ?></td>
-
 			<td>
 				<?php $userspaid = getPaidUsers($bill->id) ?>
 				<?php foreach ($userspaid as $up): ?>
-					<i class="tooltip glyphicon glyphicon-user " title="<?= $up['name'] ?>"></i> 
+					<!-- <span class="hastooltip" title="<?= $up['name'] ?>"><i class="glyphicon glyphicon-user"></i></span> -->
+					<span data-toggle="tooltip" data-placement="top"  title="<?= $up['name'] ?>"><i class="glyphicon glyphicon-user"></i></span>
 				<?php endforeach ?>
 			</td>
-
-
 			<td><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
 			<td><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 			<td><a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
@@ -88,8 +86,8 @@
 			<td><?= $paidbill->category ?></td>
 			<td>$<?= $paidbill->splitcost ?></td>
 			<td><?= $paidbill->notes ?></td>
-			<td><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
-			<td><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
+			<td><a href="<?= 'edit/bill/'.$paidbill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td><a href="<?= 'delete/bill/'.$paidbill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 		</tr>
 <?php endforeach ?>
 
