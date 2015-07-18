@@ -20,6 +20,7 @@ if(Input::posted()){
 	$bill->save();
 
 	$users = new Users_Collection();
+	$users->where('is_admin', '1');
 	$users->get();
 
 	foreach ($users->items as $user) {
@@ -28,6 +29,14 @@ if(Input::posted()){
 		$account->user_id = $user->id;
 		$account->bill_id = $bill->id;
 		$account->save();
+
+		$email              = new Email();
+		$email->to 	        = $user->email;
+		$email->from        = 'Bills';
+		$email->subject     = 'New Bill';
+		$email->message     = $bill->date.'<br>'.$bill->category.'<br>$'.$bill->splitcost;
+		$email->html        = true;
+		$email->send();
 
 	}
 
