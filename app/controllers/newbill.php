@@ -34,7 +34,7 @@ if(Input::posted()){
 		$email->to 	        = $user->email;
 		$email->from        = 'Bills';
 		$email->subject     = 'New Bill';
-		$email->message     = $bill->date.'<br>'.$bill->category.'<br>$'.$bill->splitcost;
+		$email->message     = 'There\'s a new bill to pay at <a href="bills.reuben.osborne.yoobee.net.nz">Bills</a><br>'.$bill->date.'<br>'.$bill->category.'<br>$'.$bill->splitcost;
 		$email->html        = true;
 		$email->send();
 
