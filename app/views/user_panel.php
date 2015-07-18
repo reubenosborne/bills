@@ -113,12 +113,14 @@
 
 
 
+<?php if ($paidbills->items): ?>
+
 
 <h3>Paid Bills</h3>
 
-<?php if ($paidbills->items): ?>
 
 <table class="table table-striped">
+
 
 <tr>
 	<th>File</th>
@@ -127,6 +129,7 @@
 	<th>Cost</th>
 	<th>Notes</th>
 </tr>
+
 
 <?php foreach ($paidbills->items as $paidbill): ?>
 		<tr>
@@ -144,8 +147,11 @@
 
 </table>
 
+
 <? elseif ($bills->items): ?>
 
+
 	<p class="alert alert-danger">Better get a move on, there are bills to be paid!</p>
+
 
 <?php endif ?>
