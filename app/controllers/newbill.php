@@ -29,12 +29,12 @@ if(Input::posted()){
 		$account->bill_id = $bill->id;
 		$account->save();
 
-		if ($user->is_admin = 1) {
+		if ($user->is_admin = '1') {
 		$email              = new Email();
 		$email->to 	        = $user->email;
 		$email->from        = 'Bills';
 		$email->subject     = 'New Bill';
-		$email->message     = 'There\'s a new bill to pay at <a href="bills.reuben.osborne.yoobee.net.nz">Bills</a><br>'.$bill->date.'<br>'.$bill->category.'<br>$'.$bill->splitcost;
+		$email->message     = 'There\'s a new bill to pay on the <a href="bills.reuben.osborne.yoobee.net.nz">Meola Bills</a> website.<br>Created on: '.$bill->date.'<br>Category: '.$bill->category.'<br>Price: $'.$bill->splitcost.'<br>Notes: '.$bill->notes;
 		$email->html        = true;
 		$email->send();
 		}

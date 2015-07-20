@@ -19,7 +19,7 @@
 
 <tr>
 	<th>File</th>
-	<th>Date</th>
+	<th>Recieved</th>
 	<th>Category</th>
 	<th>Cost</th>
 	<th>Notes</th>

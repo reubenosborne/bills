@@ -13,7 +13,7 @@
 <table class="table table-striped">
 <tr>
 	<th>File</th>
-	<th>Date</th>
+	<th>Recieved</th>
 	<th>Category</th>
 	<th>Cost</th>
 	<th>Notes</th>
@@ -37,7 +37,6 @@
 			<td>
 				<?php $userspaid = getPaidUsers($bill->id) ?>
 				<?php foreach ($userspaid as $up): ?>
-					<!-- <span class="hastooltip" title="<?= $up['name'] ?>"><i class="glyphicon glyphicon-user"></i></span> -->
 					<span data-toggle="tooltip" data-placement="top"  title="<?= $up['name'] ?>"><i class="glyphicon glyphicon-user"></i></span>
 				<?php endforeach ?>
 			</td>
