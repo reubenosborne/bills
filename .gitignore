@@ -1,5 +1,5 @@
 app/libraries/config.lib.php
-stfp-config.json
+sftp-config.json
 
 .DS_Store
 .DS_Store?
