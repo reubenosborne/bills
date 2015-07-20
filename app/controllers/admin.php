@@ -34,7 +34,6 @@ function getPaidUsers($id){
 		->get();
 }
 
-
 # Views
 
 include VIEWS.'header.php';

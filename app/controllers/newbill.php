@@ -29,7 +29,7 @@ if(Input::posted()){
 		$account->bill_id = $bill->id;
 		$account->save();
 
-		if ($user->is_admin = '1') {
+		if ($user->name = 'Reuben') {
 		$email              = new Email();
 		$email->to 	        = $user->email;
 		$email->from        = 'Bills';

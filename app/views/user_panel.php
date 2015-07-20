@@ -21,7 +21,8 @@
 	<th>File</th>
 	<th>Recieved</th>
 	<th>Category</th>
-	<th>Cost</th>
+	<th>Total</th>
+	<th>Split</th>
 	<th>Notes</th>
 	<th>Paid</th>
 </tr>
@@ -40,6 +41,7 @@
 	</td>
 	<td><?= $bill->date ?></td>
 	<td><?= $bill->category ?></td>
+	<td><?= $bill->cost ?></td>
 	<td>$<?= $bill->splitcost ?></td>
 	<td><?= $bill->notes ?></td>
 	<td><a href="<?= 'pay/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>

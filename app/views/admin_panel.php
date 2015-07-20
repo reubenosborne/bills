@@ -15,7 +15,9 @@
 	<th>File</th>
 	<th>Recieved</th>
 	<th>Category</th>
-	<th>Cost</th>
+	<th>Total</th>
+	<th>Split</th>
+	<th><i class="glyphicon glyphicon-sort"></i></th>
 	<th>Notes</th>
 	<th>User</th>
 	<th width="50px">Edit</th>
@@ -30,10 +32,20 @@
 				<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
 			</td>
-			<td><?= $bill->date ?></td>
+			<td><?= date('l d F', strtotime($bill->date)) ?></td>
 			<td><?= $bill->category ?></td>
+			<td>$<?= $bill->cost ?></td>
 			<td>$<?= $bill->splitcost ?></td>
-			<td><?= $bill->notes ?></td>
+			<td>
+			<?php 	$lastbill = new Bill();
+					$lastbill->load($bill->id - 1); ?>
+			<?php if ($bill->cost > $lastbill->cost): ?>
+				<i class="glyphicon glyphicon-arrow-up"></i>
+			<?php else: ?>
+				<i class="glyphicon glyphicon-arrow-down"></i>
+			<?php endif ?>
+			</td>
+			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
 			<td>
 				<?php $userspaid = getPaidUsers($bill->id) ?>
 				<?php foreach ($userspaid as $up): ?>

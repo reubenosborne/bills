@@ -13,3 +13,11 @@ a{
 .grey{
 	color: #666;
 }
+
+.glyphicon-arrow-up{
+	color: rgb(222,84,75);
+}
+
+.glyphicon-arrow-down{
+	color: rgb(85,184,83);
+}
