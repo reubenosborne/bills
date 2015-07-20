@@ -20,7 +20,6 @@ if(Input::posted()){
 	$bill->save();
 
 	$users = new Users_Collection();
-	$users->where('is_admin', '1');
 	$users->get();
 
 	foreach ($users->items as $user) {
@@ -30,6 +29,7 @@ if(Input::posted()){
 		$account->bill_id = $bill->id;
 		$account->save();
 
+		if ($user->is_admin = 1) {
 		$email              = new Email();
 		$email->to 	        = $user->email;
 		$email->from        = 'Bills';
@@ -37,6 +37,7 @@ if(Input::posted()){
 		$email->message     = 'There\'s a new bill to pay at <a href="bills.reuben.osborne.yoobee.net.nz">Bills</a><br>'.$bill->date.'<br>'.$bill->category.'<br>$'.$bill->splitcost;
 		$email->html        = true;
 		$email->send();
+		}
 
 	}
 

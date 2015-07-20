@@ -75,7 +75,7 @@
 
 	<div class="alert alert-info alert-dismissible fade in" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <p>Once confirmed the bills will jump to the paid section.</p>
+	  <p>Awaiting confirmation. Thanks for paying all your bills!</p>
 	</div>
 
 <?php endif ?>
