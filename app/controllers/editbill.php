@@ -1,4 +1,4 @@
-1<?php # controllers/editbill.php
+<?php # controllers/editbill.php
 
 # Logic
 
@@ -27,7 +27,6 @@ if(Input::posted()){
 	URL::redirect('/admin');
 }
 
-Sticky::set('date', 	$bill->date);
 Sticky::set('category', $bill->category);
 Sticky::set('cost', 	$bill->cost);
 Sticky::set('notes', 	$bill->notes);

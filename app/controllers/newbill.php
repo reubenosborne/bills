@@ -7,6 +7,7 @@ if(Input::posted()){
 	$bill = new Bill();
 
 	$bill->fill(Input::all());
+	$bill->date = date('Y-m-d H:i:s', strtotime('now'));
 	$bill->splitcost = $bill->cost / 5;
 
 	if ($_FILES) {
@@ -29,15 +30,15 @@ if(Input::posted()){
 		$account->bill_id = $bill->id;
 		$account->save();
 
-		// if ($user->is_admin = 1) {
-		// $email              = new Email();
-		// $email->to 	        = $user->email;
-		// $email->from        = 'Bills';
-		// $email->subject     = 'New Bill';
-		// $email->message     = 'There\'s a new bill to pay on the <a href="bills.reuben.osborne.yoobee.net.nz">Meola Bills</a> website.<br>Created on: '.$bill->date.'<br>Category: '.$bill->category.'<br>Price: $'.$bill->splitcost.'<br>Notes: '.$bill->notes;
-		// $email->html        = true;
-		// $email->send();
-		// }
+		if ($user->is_admin) {
+			$email              = new Email();
+			$email->to 	        = $user->email;
+			$email->from        = 'Bills';
+			$email->subject     = 'New Bill';
+			$email->message     = 'There\'s a new bill to pay on the <a href="bills.reuben.osborne.yoobee.net.nz">Meola Bills</a> website.<br>Created on: '.$bill->date.'<br>Category: '.$bill->category.'<br>Price: $'.$bill->splitcost.'<br>Notes: '.$bill->notes;
+			$email->html        = true;
+			$email->send();
+		}
 
 	}
 

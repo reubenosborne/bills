@@ -10,7 +10,7 @@
 
 <?php if ($bills->items): ?>
 	
-<table class="table table-striped">
+<table class="table table-striped bill-list">
 <tr>
 	<th>File</th>
 	<th>Recieved</th>
@@ -19,14 +19,14 @@
 	<th>Split</th>
 	<th>Notes</th>
 	<th>User</th>
-	<th width="50px">Edit</th>
-	<th width="50px">Delete</th>
-	<th width="50px">Pay</th>
+	<th>Edit</th>
+	<th>Delete</th>
+	<th>Pay</th>
 </tr>
 
 <?php foreach ($bills->items as $bill): ?>
 		<tr>
-			<td width="100">
+			<td>
 				<?php if ($bill->image): ?>
 				<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
@@ -35,6 +35,30 @@
 			<td><?= $bill->category ?></td>
 			<td>
 			<?php
+
+			$db = new Database(Config::$database);
+
+			$lastbill = $db
+				->select('*')
+				->from('bills')
+				->where('category', $bill->category)
+
+
+
+
+
+				->where('date' < $bill->date)
+
+
+
+
+
+				->where('deleted', '0')
+				->order_by([
+					"date" => "desc",
+					"id" => "desc"
+				])
+				->get_one();
 
 			if ($bill->cost > $lastbill->cost): ?>
 
@@ -49,7 +73,8 @@
 			$<?= $bill->cost ?>
 
 			</td>
-			<td>$<?= $bill->splitcost ?></td>
+			<td>$<?= $bill->splitcost ?>
+			</td>
 			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
 			<td>
 				<?php $userspaid = getPaidUsers($bill->id) ?>
