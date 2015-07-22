@@ -1,4 +1,4 @@
-1<?php # controllers/deletebill.php
+1<?php # controllers/editbill.php
 
 # Logic
 

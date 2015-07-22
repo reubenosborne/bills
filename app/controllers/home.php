@@ -6,7 +6,6 @@ if (!Auth::is_logged_in()) {
 	URL::redirect('/login');
 }
 
-
 $user = new User();
 $user->load(Auth::user_id());
 

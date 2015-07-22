@@ -17,7 +17,6 @@
 	<th>Category</th>
 	<th>Total</th>
 	<th>Split</th>
-	<th><i class="glyphicon glyphicon-sort"></i></th>
 	<th>Notes</th>
 	<th>User</th>
 	<th width="50px">Edit</th>
@@ -34,17 +33,23 @@
 			</td>
 			<td><?= date('l d F', strtotime($bill->date)) ?></td>
 			<td><?= $bill->category ?></td>
-			<td>$<?= $bill->cost ?></td>
-			<td>$<?= $bill->splitcost ?></td>
 			<td>
-			<?php 	$lastbill = new Bill();
-					$lastbill->load($bill->id - 1); ?>
-			<?php if ($bill->cost > $lastbill->cost): ?>
+			<?php
+
+			if ($bill->cost > $lastbill->cost): ?>
+
 				<i class="glyphicon glyphicon-arrow-up"></i>
+
 			<?php else: ?>
+
 				<i class="glyphicon glyphicon-arrow-down"></i>
+
 			<?php endif ?>
+
+			$<?= $bill->cost ?>
+
 			</td>
+			<td>$<?= $bill->splitcost ?></td>
 			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
 			<td>
 				<?php $userspaid = getPaidUsers($bill->id) ?>
@@ -78,12 +83,12 @@
 <table class="table table-striped">
 <tr>
 	<th>File</th>
-	<th>Date</th>
+	<th>Recieved</th>
 	<th>Category</th>
-	<th>Cost</th>
+	<th>Total</th>
+	<th>Split</th>
 	<th>Notes</th>
 	<th width="50px">Edit</th>
-	<th width="50px">Delete</th>
 </tr>
 
 <?php foreach ($paidbills->items as $paidbill): ?>
@@ -93,12 +98,19 @@
 				<a href="<?= $paidbill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
 			</td>
-			<td><?= $paidbill->date ?></td>
+			<td><?= date('l d F', strtotime($paidbill->date)) ?></td>
 			<td><?= $paidbill->category ?></td>
+			<td>
+			<?php if ($paidbill->cost > $paidlastbill->cost): ?>
+				<i class="glyphicon glyphicon-arrow-up"></i>
+			<?php else: ?>
+				<i class="glyphicon glyphicon-arrow-down"></i>
+			<?php endif ?>
+			$<?= $paidbill->cost ?>
+			</td>
 			<td>$<?= $paidbill->splitcost ?></td>
-			<td><?= $paidbill->notes ?></td>
+			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
 			<td><a href="<?= 'edit/bill/'.$paidbill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
-			<td><a href="<?= 'delete/bill/'.$paidbill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 		</tr>
 <?php endforeach ?>
 
