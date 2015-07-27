@@ -19,7 +19,6 @@ Route::post('/resetpw/:value', CONTROLLERS.'resetpw.php');
 Route::get('/user', CONTROLLERS.'user.php');
 
 Route::get('/admin', CONTROLLERS.'admin.php');
-Route::post('/admin', CONTROLLERS.'admin.php');
 
 Route::get('/new/bill', CONTROLLERS.'newbill.php');
 Route::post('/new/bill', CONTROLLERS.'newbill.php');

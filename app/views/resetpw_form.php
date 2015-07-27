@@ -1,5 +1,5 @@
 <div class="login">
-	<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4']) ?>
+	<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4', 'id' => 'resetForm']) ?>
 
 	<h3>Reset Password</h3>
 	<a href="/login">Back to Login</a>
@@ -17,7 +17,3 @@
 
 	<?= Form::close() ?>
 </div>
-
-<?= $today_dt ?>
-<br>
-<?= $token_dt ?>

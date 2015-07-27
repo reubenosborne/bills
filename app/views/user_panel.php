@@ -32,18 +32,18 @@
 
 
 <tr>
-	<td width="100">
+	<td>
 		<?php if ($bill->image): ?>
 
 		<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 		
 		<?php endif ?>
 	</td>
-	<td><?= $bill->date ?></td>
+	<td><?= date('l d F', strtotime($bill->date)) ?></td>
 	<td><?= $bill->category ?></td>
-	<td><?= $bill->cost ?></td>
+	<td>$<?= $bill->cost ?></td>
 	<td>$<?= $bill->splitcost ?></td>
-	<td><?= $bill->notes ?></td>
+	<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
 	<td><a href="<?= 'pay/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
 </tr>
 
@@ -107,7 +107,6 @@
 
 </table>
 <?php endif ?>
-
 
 
 
