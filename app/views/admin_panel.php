@@ -1,3 +1,6 @@
+<!-- Intro & Controls -->
+
+
 <h1>Hello <?= $user->name ?></h1>
 
 <a href="/new/bill" class="btn btn-primary">New Bill</a>
@@ -6,11 +9,16 @@
 
 <hr>
 
-<h3>Unpaid Bills</h3>
+
+<!-- Unpaid Bills -->
+
 
 <?php if ($bills->items): ?>
+
+<h3>Unpaid Bills</h3>
 	
-<table class="table table-striped bill-list">
+<table class="table table-striped">
+
 <tr>
 	<th>File</th>
 	<th>Recieved</th>
@@ -26,14 +34,21 @@
 
 <?php foreach ($bills->items as $bill): ?>
 		<tr>
-			<td>
+			<!-- File -->
+			<td width="50px">
 				<?php if ($bill->image): ?>
-				<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
+					<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
 			</td>
-			<td><?= date('l d F', strtotime($bill->date)) ?></td>
-			<td><?= $bill->category ?></td>
-			<td>
+
+			<!-- Date -->
+			<td width="200px"><?= date('l d F', strtotime($bill->date)) ?></td>
+			
+			<!-- Category -->
+			<td width="150px"><?= $bill->category ?></td>
+
+			<!-- Total -->
+			<td width="100px">
 			<?php
 
 			$db = new Database(Config::$database);
@@ -42,25 +57,16 @@
 				->select('*')
 				->from('bills')
 				->where('category', $bill->category)
-
-
-
-
-
-				->where('date' < $bill->date)
-
-
-
-
-
+				->where('date <', $bill->date)
 				->where('deleted', '0')
 				->order_by([
 					"date" => "desc",
 					"id" => "desc"
 				])
 				->get_one();
-
-			if ($bill->cost > $lastbill->cost): ?>
+			?>
+		
+			<?php if ($bill->cost > $lastbill['cost']): ?>
 
 				<i class="glyphicon glyphicon-arrow-up"></i>
 
@@ -71,20 +77,26 @@
 			<?php endif ?>
 
 			$<?= $bill->cost ?>
-
 			</td>
-			<td>$<?= $bill->splitcost ?>
-			</td>
-			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
-			<td>
+			
+			<!-- Split Cost -->
+			<td width="100px">$<?= $bill->splitcost ?></td>
+			
+			<!-- Notes -->
+			<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
+			
+			<!-- Users -->
+			<td width="100px">
 				<?php $userspaid = getPaidUsers($bill->id) ?>
 				<?php foreach ($userspaid as $up): ?>
 					<span data-toggle="tooltip" data-placement="top"  title="<?= $up['name'] ?>"><i class="glyphicon glyphicon-user"></i></span>
 				<?php endforeach ?>
 			</td>
-			<td><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
-			<td><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
-			<td><a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
+			
+			<!-- Controls -->
+			<td width="50px"><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td width="50px"><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
+			<td width="50px"><a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
 		</tr>
 <?php endforeach ?>
 
@@ -106,6 +118,7 @@
 <h3>Paid Bills</h3>
 
 <table class="table table-striped">
+
 <tr>
 	<th>File</th>
 	<th>Recieved</th>
@@ -113,30 +126,68 @@
 	<th>Total</th>
 	<th>Split</th>
 	<th>Notes</th>
-	<th width="50px">Edit</th>
+	<th>Edit</th>
+	<th>Delete</th>
 </tr>
 
 <?php foreach ($paidbills->items as $paidbill): ?>
 		<tr>
-			<td width="100">
+			<!-- File -->
+			<td width="50px">
 				<?php if ($paidbill->image): ?>
-				<a href="<?= $paidbill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
+					<a href="<?= $paidbill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
 			</td>
-			<td><?= date('l d F', strtotime($paidbill->date)) ?></td>
-			<td><?= $paidbill->category ?></td>
-			<td>
-			<?php if ($paidbill->cost > $paidlastbill->cost): ?>
+
+			<!-- Date -->
+			<td width="200px"><?= date('l d F', strtotime($paidbill->date)) ?></td>
+			
+			<!-- Category -->
+			<td width="150px"><?= $paidbill->category ?></td>
+			
+			<!-- Total -->
+			<?php
+
+			$db = new Database(Config::$database);
+
+			$paidlastbill = $db
+				->select('*')
+				->from('bills')
+				->where('category', $paidbill->category)
+				->where('date <', $paidbill->date)
+				->where('deleted', '0')
+				->order_by([
+					"date" => "desc",
+					"id" => "desc"
+				])
+				->get_one();
+			?>
+
+			<td width="100px">
+			<?php if ($paidbill->cost > $paidlastbill['cost']): ?>
+
 				<i class="glyphicon glyphicon-arrow-up"></i>
+
 			<?php else: ?>
+
 				<i class="glyphicon glyphicon-arrow-down"></i>
+
 			<?php endif ?>
+
 			$<?= $paidbill->cost ?>
 			</td>
-			<td>$<?= $paidbill->splitcost ?></td>
-			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
-			<td><a href="<?= 'edit/bill/'.$paidbill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+
+			<!-- Split Cost -->
+			<td width="100px">$<?= $paidbill->splitcost ?></td>
+
+			<!-- Notes -->
+			<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
+			
+			<!-- Controls -->
+			<td width="50px"><a href="<?= 'edit/bill/'.$paidbill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td width="50px"><a href="<?= 'delete/bill/'.$paidbill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 		</tr>
+
 <?php endforeach ?>
 
 </table>
