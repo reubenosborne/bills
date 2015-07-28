@@ -2,6 +2,8 @@
 
 # Logic
 
+Auth::kickout_non_admin('/');
+
 if(Input::posted()){
 
 	$bill = new Bill();

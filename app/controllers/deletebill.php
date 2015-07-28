@@ -2,6 +2,8 @@
 
 # Logic
 
+Auth::kickout_non_admin('/');
+
 $bill = new Bill();
 
 $bill->load(Route::param('id'));

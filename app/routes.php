@@ -32,9 +32,4 @@ Route::get('/confirm/bill/:id', CONTROLLERS.'confirmbill.php');
 
 Route::get('/pay/bill/:id', CONTROLLERS.'paybill.php');
 
-
-
-
-
-
 Route::fallback(VIEWS.'404.php');

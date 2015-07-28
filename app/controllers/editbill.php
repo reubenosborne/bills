@@ -2,6 +2,8 @@
 
 # Logic
 
+Auth::kickout_non_admin('/');
+
 $bill = new Bill();
 
 $bill->load(Route::param('id'));
@@ -30,7 +32,6 @@ if(Input::posted()){
 Sticky::set('category', $bill->category);
 Sticky::set('cost', 	$bill->cost);
 Sticky::set('notes', 	$bill->notes);
-Sticky::set('image', 	$bill->image);
 
 $title = 'Edit Bill';
 

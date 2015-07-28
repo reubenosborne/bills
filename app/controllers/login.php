@@ -14,11 +14,11 @@ if (Input::posted()) {
 
 		Auth::log_in($user->id, $user->is_admin);
 
-		if (Auth::is_admin()) {
-			URL::redirect('/admin');
-		}else{
+		// if (Auth::is_admin()) {
+		// 	URL::redirect('/admin');
+		// }else{
 			URL::redirect('/');
-		}
+		// }
 
 	}
 }

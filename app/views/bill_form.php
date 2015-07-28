@@ -19,12 +19,7 @@
 	
 	<div class="form-group">
 		<div>
-			<? if (Sticky::get('image')): ?>
-				<img src="/<?= Sticky::get('image') ?>" alt="Uploaded Image" width="100" margin="10">
-			<? endif ?>
-		</div>
-		<div>
-			<?= Form::label('file', 'Image') ?>
+			<?= Form::label('file', 'Files') ?>
 			<?= Form::file('file', ['class' => 'form-control']) ?>
 		</div>
 	</div>

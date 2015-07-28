@@ -7,6 +7,9 @@ Auth::kickout_non_admin('/');
 $user = new User();
 $user->load(Auth::user_id());
 
+$users = new Users_Collection();
+$users->get();
+
 $bills = new Bills_Collection();
 $bills->where('deleted' , '0');
 $bills->where('paid' , '0');
@@ -18,12 +21,6 @@ $paidbills->where('deleted' , '0');
 $paidbills->where('paid' , '1');
 $paidbills->order_by('date' , 'asc');
 $paidbills->get();
-
-// $lastbill = new Bill();
-// $lastbill->load([
-// 	'id' => $bill->id - 1,
-// 	'category' => $bill->category
-// 	]);
 
 function getPaidUsers($id){
 

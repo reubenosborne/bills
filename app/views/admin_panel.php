@@ -1,16 +1,19 @@
-<!-- Intro & Controls -->
+<!-- 	Intro & Controls 	-->
 
 
 <h1>Hello <?= $user->name ?></h1>
 
-<a href="/new/bill" class="btn btn-primary">New Bill</a>
+<a href="/user" class="btn btn-primary">User Panel</a>
+
+<a href="/new/bill" class="btn btn-success">New Bill</a>
 
 <a href="/logout" class="btn btn-danger">Logout</a>
+
 
 <hr>
 
 
-<!-- Unpaid Bills -->
+<!-- 	Unpaid Bills	 -->
 
 
 <?php if ($bills->items): ?>
@@ -87,10 +90,20 @@
 			
 			<!-- Users -->
 			<td width="100px">
-				<?php $userspaid = getPaidUsers($bill->id) ?>
+			<?php $userspaid = getPaidUsers($bill->id) ?>
+			<?php if ( count($userspaid) == count($users->items) ): ?>
+
+					<span data-toggle="tooltip" data-placement="top"  title="Paid Up"><i class="glyphicon glyphicon-thumbs-up"></i></span>
+
+			<?php else: ?>
+
 				<?php foreach ($userspaid as $up): ?>
+
 					<span data-toggle="tooltip" data-placement="top"  title="<?= $up['name'] ?>"><i class="glyphicon glyphicon-user"></i></span>
+				
 				<?php endforeach ?>
+					
+			<?php endif ?>
 			</td>
 			
 			<!-- Controls -->
@@ -198,6 +211,6 @@
 
 <?php else: ?>
 
-	<p class="alert alert-info">There are no bills to pay.</p>
+	<p class="alert alert-info">There are no bills to be paid.</p>
 
 <?php endif ?>
