@@ -13,28 +13,18 @@ if (Input::posted()) {
 		->get_field('id');
 
 	$token              = new Token();
-
 	$token->value       = md5(uniqid(mt_rand(), true));
-
 	$token->expiration  = date('Y-m-d H:i:s', strtotime('+30 minutes'));
-
 	$token->user_id     = $user_id;
-
 	$token->save();
 
 	
 	$email              = new Email();
-
 	$email->to 	        = Input::get('email');
-
 	$email->from        = 'Bills';
-
 	$email->subject     = 'Reset Bills Password';
-  
 	$email->message     = 'Reset Link: <a href="http://bills.reuben.osborne.yoobee.net.nz/resetpw/'.$token->value.'">Click here to reset your password.</a>';
-  
 	$email->html        = true;
-  
 	$email->send();
 
 	URL::redirect('/');

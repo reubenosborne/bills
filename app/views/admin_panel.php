@@ -1,19 +1,26 @@
 <!-- 	Intro & Controls 	-->
 
 
+
+
 <h1>Hello <?= $user->name ?></h1>
+
 
 <a href="/user" class="btn btn-primary">User Panel</a>
 
-<a href="/new/bill" class="btn btn-success">New Bill</a>
-
 <a href="/logout" class="btn btn-danger">Logout</a>
+
+<a href="/new/bill" class="btn btn-success">New Bill</a>
 
 
 <hr>
 
 
+
+
 <!-- 	Unpaid Bills	 -->
+
+
 
 
 <?php if ($bills->items): ?>
@@ -38,7 +45,7 @@
 <?php foreach ($bills->items as $bill): ?>
 		<tr>
 			<!-- File -->
-			<td width="50px">
+			<td width="30px">
 				<?php if ($bill->image): ?>
 					<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
@@ -68,7 +75,8 @@
 				])
 				->get_one();
 			?>
-		
+
+			<!-- Arrow Up/Down -->
 			<?php if ($bill->cost > $lastbill['cost']): ?>
 
 				<i class="glyphicon glyphicon-arrow-up"></i>
@@ -107,15 +115,16 @@
 			</td>
 			
 			<!-- Controls -->
-			<td width="50px"><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
-			<td width="50px"><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
-			<td width="50px"><a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
+			<td width="30px"><a href="<?= 'edit/bill/'.$bill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td width="30px"><a href="<?= 'delete/bill/'.$bill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
+			<td width="30px"><a href="<?= 'confirm/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
 		</tr>
 <?php endforeach ?>
 
 </table>
 
 
+<!-- If there are no pending bills but some paid bills: -->
 <?php elseif (!$bills->items && $paidbills->items): ?>
 
 	<p class="alert alert-info">There are no bills to pay.</p>
@@ -123,7 +132,11 @@
 <?php endif ?>
 
 
+
+
 <!--      Paid Bills      -->
+
+
 
 
 <?php if ($paidbills->items): ?>
@@ -146,7 +159,7 @@
 <?php foreach ($paidbills->items as $paidbill): ?>
 		<tr>
 			<!-- File -->
-			<td width="50px">
+			<td width="30px">
 				<?php if ($paidbill->image): ?>
 					<a href="<?= $paidbill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 				<?php endif ?>
@@ -159,6 +172,8 @@
 			<td width="150px"><?= $paidbill->category ?></td>
 			
 			<!-- Total -->
+			<td width="100px">
+
 			<?php
 
 			$db = new Database(Config::$database);
@@ -175,8 +190,8 @@
 				])
 				->get_one();
 			?>
-
-			<td width="100px">
+			
+			<!-- Arrow Up/Down -->
 			<?php if ($paidbill->cost > $paidlastbill['cost']): ?>
 
 				<i class="glyphicon glyphicon-arrow-up"></i>
@@ -194,21 +209,23 @@
 			<td width="100px">$<?= $paidbill->splitcost ?></td>
 
 			<!-- Notes -->
-			<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
+			<td width="30px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
 			
 			<!-- Controls -->
-			<td width="50px"><a href="<?= 'edit/bill/'.$paidbill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
-			<td width="50px"><a href="<?= 'delete/bill/'.$paidbill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
+			<td width="30px"><a href="<?= 'edit/bill/'.$paidbill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>
+			<td width="30px"><a href="<?= 'delete/bill/'.$paidbill->id ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 		</tr>
 
 <?php endforeach ?>
 
 </table>
 
+<!-- If there are bills but none have been paid: -->
 <?php elseif ($bills->items && !$paidbills->items): ?>
 
 	<p class="alert alert-danger">No bills have been paid yet.</p>
 
+<!-- If there are no bills: -->
 <?php else: ?>
 
 	<p class="alert alert-info">There are no bills to be paid.</p>

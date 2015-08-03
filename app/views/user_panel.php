@@ -3,7 +3,6 @@
 
 
 
-
 <h1>Hello <?= $user->name ?></h1>
 
 <?php if ( Auth::is_admin() ): ?>
@@ -19,16 +18,14 @@
 
 
 
-
 <!-- 	Unpaid Bills	 -->
 
 
 
 
+<!-- If there are bills: -->
 
 <?php if ($bills->items): ?>
-
-
 
 <h3>Unpaid Bills</h3>
 
@@ -47,17 +44,25 @@
 <?php foreach ($bills->items as $bill): ?>
 
 <tr>
-	<td>
+	<!-- File -->
+	<td width="50px">
 		<?php if ($bill->image): ?>
 
 		<a href="<?= $bill->image ?>" alt="" width="100"><i class="glyphicon glyphicon-file"></i></a>
 		
 		<?php endif ?>
 	</td>
-	<td><?= date('l d F', strtotime($bill->date)) ?></td>
-	<td><?= $bill->category ?></td>
-	<td>
+
+	<!-- Date -->
+	<td width="200px"><?= date('l d F', strtotime($bill->date)) ?></td>
+
+	<!-- Category -->
+	<td width="150px"><?= $bill->category ?></td>
+
+	<!-- Total -->
+	<td width="100px">
 	<?php
+
 	$db = new Database(Config::$database);
 
 	$lastbill = $db
@@ -72,7 +77,8 @@
 		])
 		->get_one();
 	?>
-		
+	
+	<!-- Arrow Up/Down -->
 	<?php if ($bill->cost > $lastbill['cost']): ?>
 
 		<i class="glyphicon glyphicon-arrow-up"></i>
@@ -85,10 +91,15 @@
 
 	$<?= $bill->cost ?>
 	</td>
+	
+	<!-- Split Cost -->
+	<td width="100px">$<?= $bill->splitcost ?></td>
 
-	<td>$<?= $bill->splitcost ?></td>
-	<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
-	<td><a href="<?= 'pay/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
+	<!-- Notes -->
+	<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
+	
+	<!-- Pay Bill -->
+	<td width="50px"><a href="<?= 'pay/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
 </tr>
 
 <?php endforeach ?>
@@ -97,16 +108,14 @@
 
 
 
+
+<!-- If there are no bills: -->
+
 <?php else: ?>
-
-
 
 <p class="alert alert-success">No bills to pay, lucky you!</p>
 
-
-
 <?php endif ?>
-
 
 
 
@@ -116,13 +125,12 @@
 
 
 
-
+<!-- If there are pending bills: -->
 <?php if ($pendbills->items): ?>
-
-
 
 <h3>Pending Bills</h3>
 
+<!-- If there are pending bills and no bills to be paid -->
 <?php if ($pendbills->items && !$bills->items): ?>
 
 	<div class="alert alert-info alert-dismissible fade in" role="alert">
@@ -132,38 +140,83 @@
 
 <?php endif ?>
 
-	<table class="table table-striped">
-		<tr>
-			<th>File</th>
-			<th>Date</th>
-			<th>Category</th>
-			<th>Cost</th>
-			<th>Notes</th>
-		</tr>
+<table class="table table-striped">
+	<tr>
+		<th>File</th>
+		<th>Date</th>
+		<th>Category</th>
+		<th>Total</th>
+		<th>Split</th>
+		<th>Notes</th>
+	</tr>
 
 <?php foreach ($pendbills->items as $pendbill): ?>
-		<tr>
-			<td width="50">
-				<?php if ($pendbill->image): ?>
-				<a href="<?= $pendbill->image ?>" alt=""><i class="glyphicon glyphicon-file"></i></a>
-				<?php endif ?>
-			</td>
-			<td><?= date('l d F', strtotime($pendbill->date)) ?></td>
-			<td><?= $pendbill->category ?></td>
-			<td>$<?= $pendbill->splitcost ?></td>
-			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $pendbill->notes ?>"></i></td>
-		</tr>
+
+	<tr>
+		<!-- File -->
+		<td width="50px">
+			<?php if ($pendbill->image): ?>
+			<a href="<?= $pendbill->image ?>" alt=""><i class="glyphicon glyphicon-file"></i></a>
+			<?php endif ?>
+		</td>
+
+		<!-- Date -->
+		<td width="200px"><?= date('l d F', strtotime($pendbill->date)) ?></td>
+
+		<!-- Category -->
+		<td width="100px"><?= $pendbill->category ?></td>
+
+		<!-- Total Cost -->
+		<td width="100px">
+		<?php
+
+		$db = new Database(Config::$database);
+
+		$pendlastbill = $db
+			->select('*')
+			->from('bills')
+			->where('category', $pendbill->category)
+			->where('date <', $pendbill->date)
+			->where('deleted', '0')
+			->order_by([
+				"date" => "desc",
+				"id" => "desc"
+			])
+			->get_one();
+		?>
+	
+		<!-- Arrow Up/Down -->
+		<?php if ($pendbill->cost > $pendlastbill['cost']): ?>
+
+			<i class="glyphicon glyphicon-arrow-up"></i>
+
+		<?php else: ?>
+
+			<i class="glyphicon glyphicon-arrow-down"></i>
+
+		<?php endif ?>
+
+		$<?= $pendbill->cost ?>
+		</td>
+
+		<!-- Split Cost -->
+		<td width="100px">$<?= $pendbill->splitcost ?></td>
+
+		<!-- Notes -->
+		<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $pendbill->notes ?>"></i></td>
+	</tr>
+
 <?php endforeach ?>
 
+
 </table>
+
 <?php endif ?>
 
 
 
 
-
 <!-- 	Paid Bills	 -->
-
 
 
 
@@ -181,28 +234,75 @@
 	<th>File</th>
 	<th>Date</th>
 	<th>Category</th>
-	<th>Cost</th>
+	<th>Total</th>
+	<th>Split</th>
 	<th>Notes</th>
 </tr>
 
 
 <?php foreach ($paidbills->items as $paidbill): ?>
-		<tr>
-			<td width="50">
-				<?php if ($paidbill->image): ?>
+
+	<tr>
+		<!-- File -->
+		<td width="50px">
+			<?php if ($paidbill->image): ?>
 				<a href="<?= $paidbill->image ?>" alt=""><i class="glyphicon glyphicon-file"></i></a>
-				<?php endif ?>
-			</td>
-			<td><?= date('l d F', strtotime($paidbill->date)) ?></td>
-			<td><?= $paidbill->category ?></td>
-			<td>$<?= $paidbill->splitcost ?></td>
-			<td><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
+			<?php endif ?>
+		</td>
+
+		<!-- Date -->
+		<td width="200px"><?= date('l d F', strtotime($paidbill->date)) ?></td>
+
+		<!-- Category -->
+		<td width="100px"><?= $paidbill->category ?></td>
+
+		<!-- Total Cost -->
+		<td width="100px">
+		<?php
+
+		$db = new Database(Config::$database);
+
+		$paidlastbill = $db
+			->select('*')
+			->from('bills')
+			->where('category', $paidbill->category)
+			->where('date <', $paidbill->date)
+			->where('deleted', '0')
+			->order_by([
+				"date" => "desc",
+				"id" => "desc"
+			])
+			->get_one();
+		?>
+	
+		<!-- Arrow Up/Down -->
+		<?php if ($paidbill->cost > $paidlastbill['cost']): ?>
+
+			<i class="glyphicon glyphicon-arrow-up"></i>
+
+		<?php else: ?>
+
+			<i class="glyphicon glyphicon-arrow-down"></i>
+
+		<?php endif ?>
+
+		$<?= $paidbill->cost ?>
+		</td>
+
+		<!-- Splitcost -->
+		<td width="100px">$<?= $paidbill->splitcost ?></td>
+
+		<!-- Notes -->
+		<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
+		
 		</tr>
+		
 <?php endforeach ?>
 
 </table>
 
 
+<!-- If there are bills to be paid: -->
 <? elseif ($bills->items): ?>
 
 

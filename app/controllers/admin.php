@@ -22,6 +22,9 @@ $paidbills->where('paid' , '1');
 $paidbills->order_by('date' , 'asc');
 $paidbills->get();
 
+
+// Retrieve all users who have notified that they have paid a particular bill
+
 function getPaidUsers($id){
 
 	$db = new Database(Config::$database);

@@ -1,4 +1,5 @@
 <div class="login">
+
 	<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4', 'id' => 'forgotForm']) ?>
 
 	<h3>Reset Password</h3>

@@ -1,4 +1,4 @@
-<?php # controllers/reset_pw.php
+<?php # controllers/resetpw.php
 
 # Logic
 

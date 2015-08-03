@@ -1,4 +1,5 @@
 <div class="login">
+
 	<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4', 'id' => 'loginForm']) ?>
 
 	<h3>Login <span class="grey">or</span> <a href="/register">Create an Account</a></h3>
@@ -24,4 +25,5 @@
 	</div>
 
 	<?= Form::close() ?>
+
 </div>

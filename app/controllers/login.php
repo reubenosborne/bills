@@ -5,7 +5,6 @@
 if (Input::posted()) {
 
 	$user = new User();
-
 	$user->fill(Input::all());
 
 	$success = $user->authenticate();
@@ -13,13 +12,7 @@ if (Input::posted()) {
 	if ($success) {
 
 		Auth::log_in($user->id, $user->is_admin);
-
-		// if (Auth::is_admin()) {
-		// 	URL::redirect('/admin');
-		// }else{
 			URL::redirect('/');
-		// }
-
 	}
 }
 

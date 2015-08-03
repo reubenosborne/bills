@@ -10,7 +10,7 @@ if(Input::posted()){
 
 	$bill->fill(Input::all());
 	$bill->date = date('Y-m-d H:i:s', strtotime('now'));
-	$bill->splitcost = $bill->cost / 5;
+	$bill->splitcost = round(($bill->cost / 5), 2, PHP_ROUND_HALF_UP);
 
 	if ($_FILES) {
 		$files = Upload::to_folder('assets/uploads/');

@@ -1,1 +1,4 @@
-php_flag engine off
+<FilesMatch ".*\.(php)$">
+	Order Deny,Allow
+	Deny from all
+</FilesMatch>

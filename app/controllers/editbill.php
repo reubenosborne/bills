@@ -11,9 +11,10 @@ $bill->load(Route::param('id'));
 if(Input::posted()){
 
 	$bill->fill(Input::all());
-	$bill->splitcost = $bill->cost / 5;
+	$bill->splitcost = round(($bill->cost / 5), 2, PHP_ROUND_HALF_UP);
 
 	if ($_FILES) {
+
 		$files = Upload::to_folder('assets/uploads/');
 
 		if ($files[0]['error_message'] == false) {
@@ -22,9 +23,6 @@ if(Input::posted()){
 	}
 
 	$bill->save();
-
-	$users = new Users_Collection();
-	$users->get();
 
 	URL::redirect('/admin');
 }

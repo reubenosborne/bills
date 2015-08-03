@@ -2,15 +2,14 @@
 
 # Logic
 
+Auth::kickout_non_admin('/');
+
 $bill = new Bill();
 
 $bill->load(Route::param('id'));
 
 $bill->paid = 1;
 $bill->save();
-
-// $accounts = new Accounts_Collection();
-// $accounts->load(['bill_id' => $bill->id]);
 
 $accounts = new Accounts_Collection();
 $accounts->where('bill_id' , $bill->id);

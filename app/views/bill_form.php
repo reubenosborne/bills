@@ -1,11 +1,10 @@
 <div class="row">
+
 	<?= Form::open_upload('', ['class' => 'col-md-6 col-md-offset-3']) ?>
 
 	<h2><?= $title ?></h2>
 
-	
 	<hr>
-
 	
 	<div class="form-group">
 		<?= Form::label('category', 'Category') ?>
@@ -33,5 +32,7 @@
 		<a href="/admin" class="btn btn-warning">Cancel</a>
 		<?= Form::submit('Save', ['class' => 'btn btn-primary']) ?>
 	</div>
+
 <?= Form::close() ?>
+
 </div>

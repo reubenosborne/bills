@@ -1,4 +1,5 @@
 <div class="login">
+
 	<?= Form::open('', 'post', ['class' => 'col-md-4 col-md-offset-4', 'id' => 'resetForm']) ?>
 
 	<h3>Reset Password</h3>
@@ -16,4 +17,5 @@
 	</div>
 
 	<?= Form::close() ?>
+
 </div>
