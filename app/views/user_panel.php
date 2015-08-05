@@ -104,6 +104,13 @@
 
 <?php endforeach ?>
 
+<tr>
+	<td colspan="3"></td>
+	<td class="table-total">Total:</td>
+	<td>$<?= $total ?></td>
+	<td colspan="2"></td>
+</tr>
+
 </table>
 
 
@@ -126,11 +133,13 @@
 
 
 <!-- If there are pending bills: -->
+
 <?php if ($pendbills->items): ?>
 
 <h3>Pending Bills</h3>
 
 <!-- If there are pending bills and no bills to be paid -->
+
 <?php if ($pendbills->items && !$bills->items): ?>
 
 	<div class="alert alert-info alert-dismissible fade in" role="alert">
@@ -303,6 +312,7 @@
 
 
 <!-- If there are bills to be paid: -->
+
 <? elseif ($bills->items): ?>
 
 

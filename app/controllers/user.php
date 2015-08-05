@@ -33,6 +33,12 @@ if(count($unpaidaccounts->items)){
 	$bills->get();
 }
 
+$total = 0;
+
+foreach ($bills->items as $bill) {
+	$total += $bill->cost;
+}
+
 ## ------------------------------------------------------------------------
 
 $pendaccounts = new Accounts_Collection();
