@@ -94,7 +94,11 @@
 			<td width="100px">$<?= $bill->splitcost ?></td>
 			
 			<!-- Notes -->
-			<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
+			<td width="50px">
+				<?php if ($bill->notes): ?>
+					<i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i>
+				<?php endif ?>
+			</td>
 			
 			<!-- Users -->
 			<td width="100px">
@@ -209,7 +213,11 @@
 			<td width="100px">$<?= $paidbill->splitcost ?></td>
 
 			<!-- Notes -->
-			<td width="30px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
+			<td width="30px">
+				<?php if ($paidbill->notes): ?>
+					<i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i>
+				<?php endif ?>
+			</td>
 			
 			<!-- Controls -->
 			<td width="30px"><a href="<?= 'edit/bill/'.$paidbill->id ?>" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i></a></td>

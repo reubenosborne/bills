@@ -36,7 +36,7 @@ if(count($unpaidaccounts->items)){
 $total = 0;
 
 foreach ($bills->items as $bill) {
-	$total += $bill->cost;
+	$total += $bill->splitcost;
 }
 
 ## ------------------------------------------------------------------------

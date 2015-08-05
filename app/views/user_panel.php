@@ -96,7 +96,11 @@
 	<td width="100px">$<?= $bill->splitcost ?></td>
 
 	<!-- Notes -->
-	<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i></td>
+	<td width="50px">
+		<?php if ($bill->notes): ?>
+			<i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $bill->notes ?>"></i>
+		<?php endif ?>
+	</td>
 	
 	<!-- Pay Bill -->
 	<td width="50px"><a href="<?= 'pay/bill/'.$bill->id ?>" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a></td>
@@ -212,7 +216,11 @@
 		<td width="100px">$<?= $pendbill->splitcost ?></td>
 
 		<!-- Notes -->
-		<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $pendbill->notes ?>"></i></td>
+		<td width="50px">
+			<?php if ($pendbill->notes): ?>
+				<i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $pendbill->notes ?>"></i>
+			<?php endif ?>
+		</td>
 	</tr>
 
 <?php endforeach ?>
@@ -302,7 +310,11 @@
 		<td width="100px">$<?= $paidbill->splitcost ?></td>
 
 		<!-- Notes -->
-		<td width="50px"><i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i></td>
+		<td width="50px">
+			<?php if ($paidbill->notes): ?>
+				<i class="glyphicon glyphicon-comment" data-toggle="tooltip" data-placement="top" title="<?= $paidbill->notes ?>"></i>
+			<?php endif ?>
+		</td>
 		
 		</tr>
 		
